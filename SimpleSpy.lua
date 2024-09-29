@@ -2161,13 +2161,7 @@ end, originalFunction)
 --- Toggles on and off the remote spy
 function toggleSpy()
 	if not toggle then
-		if hookmetamethod then
-			local oldNamecall = hookmetamethod(game, "__namecall", newnamecall)
-			original = original or function(...)
-				return oldNamecall(...)
-			end
-			_G.OriginalNamecall = original
-		else
+		if true then
 			gm = gm or getrawmetatable(game)
 			original = original or function(...)
 				return gm.__namecall(...)
@@ -2184,11 +2178,7 @@ function toggleSpy()
 		originalEvent = hookfunction(remoteEvent.FireServer, newFireServer)
 		originalFunction = hookfunction(remoteFunction.InvokeServer, newInvokeServer)
 	else
-		if hookmetamethod then
-			if original then
-				hookmetamethod(game, "__namecall", original)
-			end
-		else
+		if true then
 			gm = gm or getrawmetatable(game)
 			setreadonly(gm, false)
 			gm.__namecall = original
@@ -2218,11 +2208,7 @@ function shutdown()
 	SimpleSpy2:Destroy()
 	hookfunction(remoteEvent.FireServer, originalEvent)
 	hookfunction(remoteFunction.InvokeServer, originalFunction)
-	if hookmetamethod then
-		if original then
-			hookmetamethod(game, "__namecall", original)
-		end
-	else
+	if true then
 		gm = gm or getrawmetatable(game)
 		setreadonly(gm, false)
 		gm.__namecall = original
@@ -2326,11 +2312,7 @@ if not _G.SimpleSpyExecuted then
 		SimpleSpy2:Destroy()
 		hookfunction(remoteEvent.FireServer, originalEvent)
 		hookfunction(remoteFunction.InvokeServer, originalFunction)
-		if hookmetamethod then
-			if original then
-				hookmetamethod(game, "__namecall", original)
-			end
-		else
+		if true then
 			setreadonly(gm, false)
 			gm.__namecall = original
 			setreadonly(gm, true)
